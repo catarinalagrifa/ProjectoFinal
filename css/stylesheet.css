@@ -1,11 +1,16 @@
 html, body {
+    height:100%;
+    width:100%;
     margin:0;
     padding:0;
     font:sans-serif;
 }
 
 
-/*        HEADER        */
+/*----------------------------
+            HEADER
+_____________________________*/
+
 
 #goto_menu {
     height:10px;
@@ -14,7 +19,101 @@ html, body {
 }
 
 
-/*        INDEX        */
+
+
+/*----------------------------
+            HOME
+_____________________________*/
+
+
+.home #goto_menu {
+    display:none;
+}
+
+.main-nav {
+    height:100%;
+    width:100%;
+    position:absolute;
+    background-color:#000;
+}
+
+.main-nav div {
+    height:inherit;
+    width:100%;
+}
+
+.main-nav ul {
+    height:inherit;
+    margin:0;
+    padding:0;
+}
+
+.main-nav li {
+    height:inherit;
+    width:calc(100% / 3);
+    margin:0;
+    padding:0;
+    float:left;
+    text-align:center;
+    font: 600 30pt 'Montserrat', sans-serif;
+    list-style-type:none;
+}
+
+.main-nav li:hover {
+    width:calc(100% - 148px);
+    transition:all 400ms ease 200ms;
+    opacity:1;
+}
+
+.nav-item01 {
+    background:url('') no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.nav-item02 {
+    background:url('') no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.nav-item03 {
+    float:right !important;
+    background:url('') no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+.main-nav a {
+    height:100%;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#000;
+    opacity:0;
+}
+
+.main-nav a:hover {
+    opacity:1;
+}
+
+.main-nav span {
+    background-color:#FFF;
+}
+
+.home footer {
+    display:none;
+}
+
+
+
+
+/*----------------------------
+        SAMPLE 01 + 02
+_____________________________*/
+
 
 #columns {
     column-width:262px;
@@ -22,9 +121,6 @@ html, body {
     max-width:852px;
     margin:-10px auto 140px;
 }
-
-
-/*        SAMPLE 01 + 02        */
 
 .title {
     margin:180px 0 140px;
@@ -37,7 +133,12 @@ html, body {
 
 
 
-/*        SAMPLE 01        */
+
+/*----------------------------
+            SAMPLE 01
+_____________________________*/
+
+
 
 .subtitle {
     margin:10px 5px 0px;
@@ -51,7 +152,10 @@ html, body {
 
 
 
-/*        SAMPLE 02        */
+
+/*----------------------------
+            SAMPLE 02
+_____________________________*/
 
 
 .main-text {
@@ -63,20 +167,136 @@ html, body {
     color:#000;
 }
 
-/* content*/
+
+
+
+/*----------------------------
+            CONTENT
+_____________________________*/
+
+
+#modal-lnk {
+    border:none;
+    margin:0;
+    padding:0;
+    display:block;
+    background-color:#FFF;
+    cursor: pointer;
+}
+
+.modal {
+    height:100%;
+    width:100%;
+    padding-top:100px; /* Location of the box */
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    overflow:auto;
+    background-color:rgb(0,0,0);
+    background-color:rgba(0,0,0,0.4);
+    z-index:1;
+}
 
 .post {
     height:100%;
     width:244px;
     border: 1px solid #FCFCFC;
-	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.18);
+    box-shadow:0 1px 2px rgba(34, 25, 25, 0.18);
     margin:0 0 20px;
     padding:10px;
     display:inline-block;
+    background-color:#FFF;
 }
 
 
-/*        FOOTER        */
+
+
+/*----------------------------
+            SINGLE
+_____________________________*/
+
+
+.close {
+    margin-right:4px;
+    float:right;
+    font-size:22px;
+    font-weight:400;
+    color:#AAA;
+}
+
+.close:hover, .close:focus {
+    color:#000;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.single-post {
+    background-color: rgba(34, 25, 25, 0.02);
+}
+
+.modal-wrapper {
+    width:954px;
+    border: 1px solid #FCFCFC;
+	box-shadow:0 1px 2px rgba(34, 25, 25, 0.18);
+    margin:180px auto;
+    padding:10px;
+    background-color:#FFF;
+}
+
+.container {
+    width:832px;
+    margin:40px auto;
+}
+
+.admin-edit {
+    margin:0;
+    padding:0;
+    font: 400 5pt 'Montserrat', sans-serif;
+    text-align:left;
+    text-transform:uppercase;
+    letter-spacing:1pt;
+    color:#666;
+}
+
+.post-title {
+    padding:0;
+    font: 600 20pt 'Montserrat', sans-serif;
+    text-align:center;
+    text-transform:uppercase;
+    color:#000;
+}
+
+.post-content p {
+    margin:40px 20px 20px;
+    padding:0;
+    font: 10pt 'Cutive Mono', monospace;
+    text-align:left;
+    color:#000;
+}
+
+.post-content img {
+    height:auto;
+    width:100%;
+}
+
+.tags {
+    margin:40px 0 10px;
+    padding:0;
+    font: 400 6pt 'Montserrat', sans-serif;
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:1pt;
+    color:#666;
+}
+
+
+
+
+/*----------------------------
+            FOOTER
+_____________________________*/
+
 
 footer {
     width:100%;
