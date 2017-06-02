@@ -10,4 +10,4 @@
     
     
     <body <?php body_class(); ?>>
-        <a href="/p01"><div id="goto_menu"></div></a>
+        <a href="/projectofinal"><div id="goto_menu"></div></a>
