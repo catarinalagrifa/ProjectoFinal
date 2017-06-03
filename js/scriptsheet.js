@@ -33,7 +33,7 @@
         nav_item.css({'width':'calc(100% / '+item_count+')','opacity':'1','transition':'all 400ms ease 0'});
     })
     
-    nav_item.mouseenter(function() {
+    nav_item.mouseover(function() {
         
         $(this).css({'width':'calc(100% - (74px * ('+item_count+' - 1)))','opacity':'1','transition':'all 400ms ease 0'});
         
@@ -41,11 +41,12 @@
             item_btn.css('opacity','1').fadeIn(800);
         }, 400);
         
+        $(this).siblings().css({'width':'74px','opacity':'0.5'});
+        
     })
     
-    nav_item.mouseout(function() {
+    nav_item.mouseleave(function() {
         
-        nav_item.css({'width':'74px','opacity':'0.5'});
         item_btn.css('opacity','0').fadeOut();
         
     })

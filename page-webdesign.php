@@ -1,6 +1,12 @@
 <!-- WEB DESIGN -->
 
-<?php get_header(); ?>
+<?php 
+
+/*
+    Template Name: Page Load Category:Web Design
+*/
+
+get_header(); ?>
 
 <div class="page-wrapper">
 

@@ -1,0 +1,30 @@
+.preview-column {
+    height:100%;
+    width:40px;
+    position:absolute;
+    top:0;
+    left:360px;
+}
+
+.preview {
+    height:30px;
+    width:30px;
+    border: .5px solid #666;
+    margin:28px auto;
+    position:relative;
+    top:144px;
+    overflow:hidden;
+}
+
+.color-preview {
+    height:30px;
+    width:30px;
+}
+
+.btn-preview {
+    height:30px;
+    background-position: center center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+

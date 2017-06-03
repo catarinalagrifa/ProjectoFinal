@@ -1,6 +1,12 @@
 <!-- ABOUT -->
 
-<?php get_header(); ?>
+<?php 
+
+/*
+    Template Name: Page About
+*/
+
+get_header(); ?>
 
 <div class="page-wrapper">
 
@@ -11,7 +17,15 @@
                 <h1 class="title"><?php the_title(); ?></h1>
 
                 <h3 class="main-text"><?php the_content(); ?></h3>
-
+                
+                <div class="buttons">
+                   
+                    <button type="button" id="curriculum-btn" class="curriculum"></button>
+                
+                    <button type="button" id="contact-btn" class="contact-form"></button>
+                    
+                </div>
+           
             <?php endwhile;
         endif;
     ?>

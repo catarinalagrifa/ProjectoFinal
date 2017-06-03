@@ -1,6 +1,12 @@
 <!-- MOTION GRAPHICS -->
 
-<?php get_header(); ?>
+<?php 
+
+/*
+    Template Name: Page Load Category:Motion Graphics
+*/
+
+get_header(); ?>
 
 <div class="page-wrapper">
 
