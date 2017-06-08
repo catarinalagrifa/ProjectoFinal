@@ -1,9 +1,12 @@
-//alert("i'm working");
-
 (function($) {
     
-    // MENU-ITEM BACKGROUND COLOR
+// MENU-ITEM BACKGROUND COLOR
+    
     $(".menu-item a").wrapInner("<span />");
+    
+    
+    
+// VARIABLES
     
    var documentEl = $(document),
        
@@ -15,11 +18,19 @@
         modal = $('#modal')[0],
         modal_btn = $('#modal-btn')[0],
        
+/*      
+        $curriculum_check = get_option('activate_button_curriculum');
+        $curriculum_checked = (@$curriculum_check == 1 ? 'checked' : '');
+       
+        $contact_form_check = get_option('activate_button_contact_form');
+        $contact_form_checked = (@$contact_form_check == 1 ? 'checked' : '');
+*/       
+       
         curriculum = $('#curriculum')[0],
         curriculum_btn = $('#curriculum-btn')[0],
        
-        contactme = $('#contact-me')[0],
-        contactme_btn = $('#contact-btn')[0],
+        contact_form = $('#contact-form')[0],
+        contact_form_btn = $('#contact-form-btn')[0],
        
         close_btn = $('.close');
 
@@ -52,10 +63,87 @@
     })
   
   
-  
+/*  
+// BUTTONS ACTIVE/INACTIVE
+    
+    if(curriculum_checked) {
+        curriculum_btn.css('display','none');
+    } else {
+        curriculum_btn.css('display','inline-block');
+    }
+*/
+    
+    
+// CONTACT FORM
+    
+    $('.contact-form').on('submit', function(e) {
+        e.preventDefault();
+        
+        $('.has-error').removeClass('has-error');
+        $('.js-show-feedback').removeClass('js-show-feedback');
+        
+        var form = $(this),
+            name = form.find('#name').val(),
+            email = form.find('#email').val(),
+            message = form.find('#message').val(),
+            ajaxurl = form.data('url');
+        
+        if(name === '') {
+            $('#name').parent('.form-group').addClass('has-error');
+            return;
+        }
+        
+        if(email === '') {
+            $('#email').parent('.form-group').addClass('has-error');
+            return;
+        }
+        
+        if(message === '') {
+            $('#message').parent('.form-group').addClass('has-error');
+            return;
+        }
+        
+        form.find('input, textarea').attr('disabled', 'disabled');
+        
+        form.find('#submit').fadeOut(300);
+        
+        $('.js-form-submission').delay(200).fadeIn(500).addClass('js-show-feedback');
+        
+        $.ajax({
+            url: ajaxurl,
+            type: 'post',
+            data: {
+                name: name,
+                email: email,
+                message: message,
+                action: 'kyanne_save_user_contact_form'
+                
+            },
+            error: function(response) {
+                $('.js-form-submission').removeClass('js-show-feedback');
+                $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
+                form.find('input, textarea').removeAttr('disabled');
+            },
+            success: function(response) {
+                if(response == 0){
+                    $('.js-form-submission').removeClass('js-show-feedback');
+                    $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
+                    form.find('input, textarea').removeAttr('disabled');
+                } else {
+                    $('.js-form-submission').removeClass('js-show-feedback');
+                    $('.js-form-success').delay(200).fadeIn(500).addClass('js-show-feedback');
+                    form.find('input, textarea').removeAttr('disabled').val('');
+                }
+            },
+
+        })
+    });
+    
+
+
 // MODAL
  
-  if ($("#modal-btn")[0]){
+  if (modal_btn){
       
     modal_btn.onclick = function() {
             
@@ -71,11 +159,11 @@
         
   }
 
-  if ($("#contact-btn")[0]){
+  if (contact_form_btn){
     
-        contactme_btn.onclick = function() {
+        contact_form_btn.onclick = function() {
             
-            contactme.style.display = "block";
+            contact_form.style.display = "block";
             
         };
         
@@ -87,7 +175,7 @@
         
         close_btn.click(function() {
 
-            contactme.style.display = "none";
+            contact_form.style.display = "none";
         
         });
         
@@ -107,9 +195,9 @@
             
         }
         
-        if (event.target == contactme) {
+        if (event.target == contact_form) {
             
-            contactme.style.display = "none";
+            contact_form.style.display = "none";
             
         }
         

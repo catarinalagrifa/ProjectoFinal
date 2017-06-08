@@ -13,12 +13,10 @@ add_theme_support('post-formats', array('aside', 'image', 'video'));
 _____________________________*/
 
 
-function projectofinal_theme_setup() {
-    
+function kyanne_theme_setup() { 
     add_theme_support('menus');
     
     register_nav_menu('primary', 'Primary Navigation');
-    
 }
 
-add_action('after_setup_theme', 'projectofinal_theme_setup');
+add_action('after_setup_theme', 'kyanne_theme_setup');

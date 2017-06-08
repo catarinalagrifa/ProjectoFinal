@@ -14,7 +14,7 @@ html, body {
 _____________________________*/
 
 
-#goto_menu {
+#goto-main-nav {
     height:10px;
     width:100%;
     background-color:#000;
@@ -28,7 +28,7 @@ _____________________________*/
 _____________________________*/
 
 
-.home #goto_menu {
+.home #goto-main-nav {
     display:none;
 }
 
@@ -58,7 +58,6 @@ _____________________________*/
     text-align:center;
     font: 600 30pt 'Montserrat', sans-serif;
     list-style-type:none;
-    background-color:lavender;
 }
 
 .main-nav li:last-child {
@@ -107,9 +106,11 @@ _____________________________*/
     opacity:1;
 }
 
+
 .main-nav span {
-    background-color:#FFF;
+    background-color:<?php print $textBackgroundColor; ?>;
 }
+
 
 .home footer {
     display:none;
@@ -182,13 +183,12 @@ _____________________________*/
     margin:80px auto;
 }
 
-.curriculum {
+.curriculum-btn {
     height:122px;
     width:122px;
     border:none;
     margin:0 10px;
     display:inline-block;
-    background-color:yellow !important;
     background:url('') no-repeat;
     background-position:center;
     background-size:cover;
@@ -217,56 +217,51 @@ _____________________________*/
     color:#000;
 }
 
-#contact-me .modal-wrapper {
-    margin:12.5% auto !important;
-    
-}
-
-.contact-form {
+.contact-form-btn {
     height:122px;
     width:122px;
     border:none;
     margin:0 10px;
     display:inline-block;
-    background-color:orange !important;
     background:url('') no-repeat;
     background-position:center;
     background-size:cover;
     cursor:pointer;
 }
 
-.contact-me {
-    margin:0 auto;
+#contact-form .modal-wrapper {
+    margin:12.5% auto !important;
+    
 }
 
-.contact-me-form {
+.contact-form {
     padding:50px;
     margin:0 auto;
 }
 
-.text-form-fields {
+.text-form-group {
     width:715px;
     margin:0 auto;
 }
 
-.form-field {
+.form-group {
     padding:0;
     margin:20px 10px;
     position:relative;
     display:inline-block;
 }
 
-.text-form-fields > .form-field:first-child, .text-form-fields > .form-field:nth-child(2) {
+.text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {
     width:335px;
 }
 
-.form-field textarea {
+.form-group textarea {
     min-height:60px;
     max-height:180px;
     width:690px;
 }
 
-.contact-me-form > .form-field {
+.contact-form > .form-group {
     position:relative;
     left:50%;
     transform:translate(-50%);
@@ -359,6 +354,62 @@ _____________________________*/
 
 .submit-btn:hover {
     border-bottom: 2px solid #000;
+}
+
+.form-group-message {
+    display:none;
+}
+
+.has-error > .form-group-message {
+        display:block;
+    }
+
+.text-error {
+    position:absolute;
+    top:40px;
+    font: 300 7pt 'Montserrat', sans-serif;
+    letter-spacing:.25pt;
+    color:red;
+}
+
+.form-group:nth-child(3) > .text-error {
+    position:absolute;
+    top:62px !important;
+}
+
+.text-info {
+    width:300px;
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translate(-50%);
+    font: 300 8pt 'Montserrat', sans-serif;
+    letter-spacing:.25pt;
+    text-align:center;
+    color:#777;
+}
+
+.contact-form > .form-group > .text-error {
+    width:530px !important;
+    left:50%;
+    text-align:center !important;
+    transform:translate(-50%);
+}
+
+.text-success {
+    width:300px;
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translate(-50%);
+    font: 300 8pt 'Montserrat', sans-serif;
+    letter-spacing:.25pt;
+    text-align:center;
+    color:green;
+}
+
+.js-show-feedback {
+    display:block;
 }
 
 

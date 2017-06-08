@@ -8,6 +8,11 @@
 
 get_header(); ?>
 
+<?php 
+    $buttonCurriculum = esc_attr(get_option('button_curriculum'));
+	$buttonContactForm = esc_attr(get_option('button_contact_form'));
+?>
+
 <div class="page-wrapper">
 
     <?php 
@@ -19,10 +24,10 @@ get_header(); ?>
                 <h3 class="main-text"><?php the_content(); ?></h3>
                 
                 <div class="buttons">
-                   
-                    <button type="button" id="curriculum-btn" class="curriculum"></button>
+                       
+                    <button type="button" id="curriculum-btn" class="curriculum-btn" style="background-image: url(<?php print $buttonCurriculum; ?>)"></button>
                 
-                    <button type="button" id="contact-btn" class="contact-form"></button>
+                    <button type="button" id="contact-form-btn" class="contact-form-btn" style="background-image: url(<?php print $buttonContactForm; ?>);"></button>
                     
                 </div>
            
@@ -48,50 +53,52 @@ get_header(); ?>
 
         </div>
    
-<div id="contact-me" class="modal">
+<div id="contact-form" class="modal">
       
-        <div class="modal-wrapper">
+    <div class="modal-wrapper">
          
-            <span class="close">&times;</span>
+        <span class="close">&times;</span>
           
             <div class="container">
-
-                <section class="contact-me">
                
-                    <form class="contact-me-form">
+                <form class="contact-form" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
                       
-                        <div class="text-form-fields">
+                    <div class="text-form-group">
                             
-                            <div class="form-field">
+                        <div class="form-group">
 
-                            <input id="name" class="input-text" type="text" placeholder="Name" required>
-
-                            </div>
-
-                            <div class="form-field">
-
-                            <input id="email" class="input-text" type="email" placeholder="E-mail" required>
+                            <input id="name" class="input-text" type="text" placeholder="Name"/>
+                            <small class="text-error form-group-message">Your Name is Required</small>
 
                         </div>
 
-                            <div class="form-field">
+                        <div class="form-group">
 
-                                <textarea class="input-text" tabindex="5" placeholder="Message" required></textarea>
+                            <input id="email" class="input-text" type="email" placeholder="Email"/>
+                            <small class="text-error form-group-message">Your Email is Required</small>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <textarea id="message" class="input-text" tabindex="5" placeholder="Message"></textarea>
+                            <small class="text-error form-group-message">A Message is Required</small>
 
                         </div>
                         
-                        </div>
+                    </div>
 
-                        <div class="form-field">
+                        <div class="form-group">
 
-                            <input id="email" class="submit-btn" type="submit" value="Submit">
+                            <input id="submit" class="submit-btn" type="submit" value="Submit"/>
+                            <small class="text-info form-group-message js-form-submission">Your message is being submitted, please wait...</small>
+                            <small class="text-success form-group-message js-form-success">Your message was submitted.</small>
+                            <small class="text-error form-group-message js-form-error">There was a problem submitting your message, please try again.</small>
 
                         </div>
                     
                 </form>
-                
-                </section>
-            
+
             </div>
             
         </div>
