@@ -2,7 +2,7 @@
 
 <?php get_header(); ?>
 
-<div class="modal-wrapper">
+<div class="modal-wrapper blog-post-modal">
     <?php 
         if( have_posts() ): 
     
@@ -12,7 +12,7 @@
 
                 <p class="admin-edit"><?php edit_post_link(); ?></p>
 
-                <div class="container">
+                <div class="modal-content">
 
                         <h2 class="post-title"><?php the_title(); ?></h2>
 

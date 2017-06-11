@@ -11,3 +11,4 @@
     
     <body <?php body_class(); ?>>
         <a href="/projectofinal"><div id="goto-main-nav"></div></a>
+        <div class="check-size"></div>

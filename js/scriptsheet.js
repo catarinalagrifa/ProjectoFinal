@@ -1,77 +1,70 @@
 (function($) {
     
-// MENU-ITEM BACKGROUND COLOR
-    
-    $(".menu-item a").wrapInner("<span />");
+//  NAVIGATION MENU W/ MEDIA QUERIES
+    if (matchMedia) {
+      var   mq = window.matchMedia('(min-width: 1024px)'),
+            nav = $('.main-nav'),
+            navItem = $('.main-nav li'),
+            itemCount = $('.main-nav li').length;
+
+      mq.addListener(WidthChange);
+      WidthChange(mq);
+    }
+
+    function WidthChange(mq) {
+        if (mq.matches) {
+            navItem.css({'height':'100%', 'width':'calc(100% / '+itemCount+')'});
+
+            nav.mouseleave(function() {
+                navItem.css({'width':'calc(100% / '+itemCount+')','opacity':'1','transition':'all 400ms ease 0'});
+            })
+
+            navItem.mouseover(function() {
+                navItemHover = $(this);
+
+                $(this).css({'width':'calc(100% - (74px * ('+itemCount+' - 1)))','opacity':'1','transition':'all 400ms ease 0'});
+
+                setTimeout(function() {
+                    navItemHover.find('a').css({'opacity':'1','transition':'all 1000ms ease'});
+                }, 400); 
+
+                $(this).siblings().css({'width':'74px','opacity':'0.5'});
+            })
+
+            navItem.mouseleave(function() {
+
+                $('.main-nav a').css({'opacity':'0','transition':'all 400ms ease'});
+            })
+        } else {
+            navItem.css({'height':'calc(100% / '+itemCount+')', 'width':'100%'});
+        }
+    }
     
     
     
 // VARIABLES
-    
-   var documentEl = $(document),
+
+        documentEl = $(document),
        
-        nav = $('.main-nav'),
-        nav_item = $('.main-nav li'),
-        item_count = $('.main-nav li').length,
-        item_btn = $('.main nav a'),
-       
-        modal = $('#modal')[0],
-        modal_btn = $('#modal-btn')[0],
-       
-/*      
-        $curriculum_check = get_option('activate_button_curriculum');
-        $curriculum_checked = (@$curriculum_check == 1 ? 'checked' : '');
-       
-        $contact_form_check = get_option('activate_button_contact_form');
-        $contact_form_checked = (@$contact_form_check == 1 ? 'checked' : '');
-*/       
+        modal = $('.modal')[0],
+        postLink = $('.blog-post-modal'),
+        modalButton = $('.blog-post-btn')[0],    
        
         curriculum = $('#curriculum')[0],
-        curriculum_btn = $('#curriculum-btn')[0],
+        curriculumButton = $('#curriculum-btn')[0],
        
-        contact_form = $('#contact-form')[0],
-        contact_form_btn = $('#contact-form-btn')[0],
+        contactForm = $('#contact-form')[0],
+        contactFormButton = $('#contact-form-btn')[0],
        
-        close_btn = $('.close');
-
+        closeButton = $('.close');
+    
+           
+    
+// MENU-ITEM BACKGROUND COLOR
+    
+    $(".main-nav a").wrapInner("<span />");
     
     
-// NAVIGATION MENU
-    
-    nav_item.css('width','calc(100% / '+item_count+')')
-    
-    nav.mouseleave(function() {
-        nav_item.css({'width':'calc(100% / '+item_count+')','opacity':'1','transition':'all 400ms ease 0'});
-    })
-    
-    nav_item.mouseover(function() {
-        
-        $(this).css({'width':'calc(100% - (74px * ('+item_count+' - 1)))','opacity':'1','transition':'all 400ms ease 0'});
-        
-        setTimeout(function() {
-            item_btn.css('opacity','1').fadeIn(800);
-        }, 400);
-        
-        $(this).siblings().css({'width':'74px','opacity':'0.5'});
-        
-    })
-    
-    nav_item.mouseleave(function() {
-        
-        item_btn.css('opacity','0').fadeOut();
-        
-    })
-  
-  
-/*  
-// BUTTONS ACTIVE/INACTIVE
-    
-    if(curriculum_checked) {
-        curriculum_btn.css('display','none');
-    } else {
-        curriculum_btn.css('display','inline-block');
-    }
-*/
     
     
 // CONTACT FORM
@@ -126,13 +119,18 @@
             },
             success: function(response) {
                 if(response == 0){
-                    $('.js-form-submission').removeClass('js-show-feedback');
-                    $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
-                    form.find('input, textarea').removeAttr('disabled');
+                    setTimeout(function() {
+                        $('.js-form-submission').removeClass('js-show-feedback');
+                        $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
+                        form.find('input, textarea').removeAttr('disabled');
+                    }, 1000);
                 } else {
-                    $('.js-form-submission').removeClass('js-show-feedback');
-                    $('.js-form-success').delay(200).fadeIn(500).addClass('js-show-feedback');
-                    form.find('input, textarea').removeAttr('disabled').val('');
+                    setTimeout(function() {
+                        $('.text-form-group').css('display', 'none');
+                        $('.js-form-submission').removeClass('js-show-feedback');
+                        $('.js-form-success').delay(200).fadeIn(500).addClass('js-show-feedback');
+                        form.find('input, textarea').removeAttr('disabled').val('');
+                    }, 1000);
                 }
             },
 
@@ -142,66 +140,44 @@
 
 
 // MODAL
- 
-  if (modal_btn){
+    
+  if (modalButton){
+    modalButton.onclick = function() {
+        modal.style.display = "block";
+    };
       
-    modal_btn.onclick = function() {
-            
-            modal.style.display = "block";
-            
-        };
-      
-    close_btn.click(function() {
-        
-      modal.style.display = "none";
-        
-    });
-        
+    closeButton.click(function() {
+        modal.style.display = "none";
+    });    
   }
 
-  if (contact_form_btn){
-    
-        contact_form_btn.onclick = function() {
+  if (contactFormButton){
+    curriculumButton.onclick = function() {
+        curriculum.style.display = "block";
+    };
+      
+    contactFormButton.onclick = function() {
+        contactForm.style.display = "block";
             
-            contact_form.style.display = "block";
-            
-        };
+    };
         
-        curriculum_btn.onclick = function() {
-            
-            curriculum.style.display = "block";
-            
-        };
-        
-        close_btn.click(function() {
-
-            contact_form.style.display = "none";
-        
-        });
-        
+    closeButton.click(function() {
+        contactForm.style.display = "none";
+    });    
   }
   
   window.onclick = function(event) {
-        
-        if (event.target == modal) {
-            
-            modal.style.display = "none";
-            
-        }
-        
-        if (event.target == curriculum) {
-            
-            curriculum.style.display = "none";
-            
-        }
-        
-        if (event.target == contact_form) {
-            
-            contact_form.style.display = "none";
-            
-        }
-        
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
-	
+        
+    if (event.target == curriculum) {
+        curriculum.style.display = "none";
+    }
+        
+    if (event.target == contact_form) {
+        contactForm.style.display = "none";
+    }
+  }
 	
 })( jQuery );
