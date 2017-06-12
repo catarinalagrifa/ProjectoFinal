@@ -2,6 +2,19 @@
 
 set_post_thumbnail_size( 244 );
 
+add_filter( 'post_thumbnail_html', 'my_post_image_html', 10, 3 );
+
+function my_post_image_html( $html, $post_id, $post_image_id ) {
+    $html = '<a href="' . get_permalink( $post_id ) . '" title="' . 
+        esc_attr( get_post_field( 'post_title', $post_id ) ) . '">' . $html . '</a>';
+    return $html;
+}
+
+add_action('the_content', 'wrap_content');
+    
+function wrap_content($content) {
+    return '<div id="modal-ready">' . $content . '</div>';
+}
 
 
 
@@ -123,6 +136,7 @@ add_shortcode( 'kyanne_post', 'kyanne_show_post_in_modal' );
 add_action('wp_ajax_nopriv_kyanne_show_post', 'kyanne_show_post');
 
 add_action('wp_ajax_kyanne_show_post', 'kyanne_show_post');
+
 function kyanne_show_post(){
     check_ajax_referer( 'kyanne-bootstrap', 'security' );
     $id = $_GET['id'];

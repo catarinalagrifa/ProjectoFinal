@@ -18,15 +18,23 @@ get_header(); ?>
             $lastBlog = new WP_Query('type=post&posts_per_page=-1&cat=4');
 
             if( $lastBlog->have_posts() ):
-
-                while( $lastBlog->have_posts() ): $lastBlog->the_post(); ?>
-
+            while( $lastBlog->have_posts() ): $lastBlog->the_post(); ?>
+                <button class="blog-post-button">
                     <?php get_template_part('content', get_post_format()); ?>
-                <?php endwhile;
+                </button>
+            <?php endwhile;
             endif;
         
             wp_reset_postdata();
         ?>
+    </div>
+    
+    <div class="modal-wrapper">
+        <div class="modal">
+            <span class="close">&times;</span>
+            
+            <?php get_template_part('single'); ?>      
+        </div>
     </div>
 </div>
 

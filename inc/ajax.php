@@ -41,7 +41,5 @@ function kyanne_save_user_contact_form() {
         echo 0;
     }
 
-    
-    
     die();
 }
