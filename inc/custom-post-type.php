@@ -4,7 +4,7 @@
     THEME CUSTOM POST TYPE
 _____________________________*/
 
-$contact = get_option('activate_contact_form');
+$contact = get_option('theme_options_activate_contact_form');
 
 if(@$contact == 1){
     add_action('init', 'kyanne_contact_custom_post_type');

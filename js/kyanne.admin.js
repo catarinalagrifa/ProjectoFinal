@@ -1,9 +1,5 @@
 (function($) {
     
-    $('.color-field').wpColorPicker();
-    
-    
-    
     var mediaUploader;
     
     $('#upload-button-curriculum').on('click', function(e) {

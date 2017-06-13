@@ -1,17 +1,42 @@
 (function($) {
     
+// VARIABLES
+
+    var $window = $(window),
+        $documentEl = $(document),
+            
+        $nav = $('.main-nav'),
+        $navItem = $('.main-nav li'),
+        $itemCount = $('.main-nav li').length,
+            
+        $modalCurriculum = $('#curriculum'),
+        $modalContactForm = $('#contact-form'),
+        $modalWrapper = $('.modal-wrapper'),
+        $modalContent = $("#modal-content"),
+        $closeButton = $('.close');
+    
+    
+//  ON LOAD   
+    $('.page-wrapper').css('display', 'none');
+    $('.page-wrapper').fadeIn(1500);
+    
+    $nav.css('display', 'none');
+    $nav.fadeIn(1500);
+    
+    
 //  NAVIGATION MENU W/ MEDIA QUERIES
     if (matchMedia) {
-      var   $mqDesktop = window.matchMedia('(min-width: 1024px)'),
-            $nav = $('.main-nav'),
-            $navItem = $('.main-nav li'),
-            $itemCount = $('.main-nav li').length;
+        $mqMobile = window.matchMedia('(max-width: 719px)'),
+        $mqDesktop = window.matchMedia('(min-width: 1024px)'),
+        
+        $mqMobile.addListener(WidthChangeMobile);
+        WidthChangeMobile($mqMobile);
 
-      $mqDesktop.addListener(WidthChange);
-      WidthChange($mqDesktop);
+        $mqDesktop.addListener(WidthChangeDesktop);
+        WidthChangeDesktop($mqDesktop);
     }
 
-    function WidthChange($mqDesktop) {
+    function WidthChangeDesktop($mqDesktop) {
         if ($mqDesktop.matches) {
             $navItem.css({'height':'100%', 'width':'calc(100% / '+$itemCount+')'});
 
@@ -32,7 +57,6 @@
             })
 
             $navItem.mouseleave(function() {
-
                 $('.main-nav a').css({'opacity':'0','transition':'all 400ms ease'});
             })
         } else {
@@ -40,17 +64,121 @@
         }
     }
     
-    
-    
-// VARIABLES
+    function WidthChangeMobile($mqMobile) {
+        if($mqMobile.matches) {
+            $('#curriculum-button').click(function(e){
+                $modalCurriculum.css('display','block');
 
-        $window = $(window),
-        $documentEl = $(document),  
-        $modalCurriculum = $('#curriculum'),
-        $modalContactForm = $('#contact-form'),
-        $modalWrapper = $('.modal-wrapper'),
-        $modalContent = $("#modal-content"),
-        $closeButton = $('.close');
+                e.preventDefault();
+
+                return false; 
+            });
+            
+            $('#contact-form-button').click(function(e){
+                $modalContactForm.css('display','block');
+
+                e.preventDefault();
+
+                return false; 
+            });
+
+            $closeButton.click(function() {
+                $modalContactForm.css('display','none');
+            });
+            
+            $window.click(function(e) {
+                $modalCurriculum.css('display','none');
+                $modalContactForm.css('display','none');
+            });
+
+            $('.modal').click(function(e){
+                event.stopPropagation();
+            });
+        } else {
+            $('.blog-post-button').click(function(e){
+                var post_link = $('a', this).attr("href");
+
+                e.preventDefault();
+
+                $modalWrapper.css('display','block');
+
+                $modalContent.html('<div class="loader"></div>');
+
+                setTimeout(function() {
+                    $modalContent.load(post_link + '#modal-ready');
+                }, 700);
+
+                return false; 
+            });
+    
+            $('#curriculum-button').click(function(e){
+                $modalCurriculum.css('display','block');
+
+                e.preventDefault();
+
+                return false; 
+            });
+
+            $('#contact-form-button').click(function(e){
+                $modalContactForm.css('display','block');
+
+                e.preventDefault();
+
+                return false; 
+            });
+
+            $closeButton.click(function() {
+                $modalWrapper.css('display','none');
+                $modalContactForm.css('display','none');
+            });
+
+            $window.click(function(e) {
+                $modalWrapper.css('display','none');
+                $modalCurriculum.css('display','none');
+                $modalContactForm.css('display','none');
+            });
+
+            $('.modal').click(function(e){
+                event.stopPropagation();
+            });
+        }
+    }
+    
+
+// TRANSITIONS
+
+    $('.main-nav li a').click(function() {
+        
+        $navItem.css({'opacity':'0','transition':'all 800ms ease'});
+        
+        setTimeout(function() {
+            $nav.css({'height':'10px','transition':'all 1000ms ease'})
+        }, 400);
+        
+        href = $(this).attr('href');
+        
+        setTimeout(function() {
+            window.location = href
+        }, 1500);
+        
+        return false;
+     });
+    
+    $('#goto-main-nav').click(function() {
+        $('.page-wrapper').css({'opacity':'0','transition':'all 800ms ease'});
+        
+        setTimeout(function() {
+            $('#goto-main-nav').css({'height':'100%','transition':'all 1000ms ease'})
+        }, 800);
+        
+        href = $(this).attr('href');
+        
+        setTimeout(function() {
+            location.href = '/projectofinal'
+        }, 1500);
+        
+        return false;
+     });
     
     
            
@@ -129,57 +257,6 @@
             },
 
         })
-    });
-    
-
-
-// MODAL
-        
-    $('.blog-post-button').click(function(e){
-        var post_link = $('a', this).attr("href");
-
-        e.preventDefault();
-
-        $modalWrapper.css('display','block');
-
-        $modalContent.html('<div class="loader"></div>');
-
-        setTimeout(function() {
-            $modalContent.load(post_link + '#modal-ready');
-        }, 1120);
-
-        return false; 
-    });
-    
-    $('#curriculum-button').click(function(e){
-        $modalCurriculum.css('display','block');
-
-        e.preventDefault();
-
-        return false; 
-    });
-    
-    $('#contact-form-button').click(function(e){
-        $modalContactForm.css('display','block');
-
-        e.preventDefault();
-
-        return false; 
-    });
-    
-    $closeButton.click(function() {
-        $modalWrapper.css('display','none');
-        $modalContactForm.css('display','none');
-    });
-
-    $window.click(function(e) {
-        $modalWrapper.css('display','none');
-        $modalCurriculum.css('display','none');
-        $modalContactForm.css('display','none');
-    });
-
-    $('.modal').click(function(e){
-        event.stopPropagation();
     });
    
 })( jQuery );

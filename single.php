@@ -1,7 +1,9 @@
 <!-- BLOG POST -->
 
+<div class="mobile"><?php get_header(); ?></div>
+
 <div id="modal-content">
-    <p class="admin-edit"><?php edit_post_link(); ?></p>
+    <p class="admin-edit"><?php edit_post_link(); ?><span class="mobile">|</span><button onclick="window.history.back()" class="previous-page mobile">Previous Page</button></p>
     
     <?php 
         if(have_posts()): 
@@ -17,3 +19,6 @@
         endif;
     ?> 
 </div>
+
+
+<div class="mobile"><?php get_footer(); ?></div>

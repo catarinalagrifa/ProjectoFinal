@@ -8,11 +8,6 @@
 
 get_header(); ?>
 
-<?php 
-    $buttonCurriculum = esc_attr(get_option('button_curriculum'));
-	$buttonContactForm = esc_attr(get_option('button_contact_form'));
-?>
-
 <div class="page-wrapper">
     <?php 
         if( have_posts() ):
@@ -22,9 +17,9 @@ get_header(); ?>
                 <h3 class="main-text"><?php the_content(); ?></h3>
                 
                 <div class="buttons">
-                    <button type="button" id="curriculum-button" class="curriculum-button" style="background-image: url(<?php print $buttonCurriculum; ?>)"></button>
+                    <button type="button" id="curriculum-button" class="curriculum-button"></button>
                 
-                    <button type="button" id="contact-form-button" class="contact-form-button" style="background-image: url(<?php print $buttonContactForm; ?>);"></button>
+                    <button type="button" id="contact-form-button" class="contact-form-button"></button>
                 </div>
             <?php endwhile;
         endif;
