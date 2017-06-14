@@ -7,8 +7,5 @@
         <?php wp_head(); ?>
     </head>
     
-    
-    
     <body <?php body_class(); ?>>
-        <div id="goto-main-nav"></div>
-        <div class="check-size"></div>
+        <div id="main-nav-link"></div>

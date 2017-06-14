@@ -1,7 +1,6 @@
 (function($) {
     
 // VARIABLES
-
     var $window = $(window),
         $documentEl = $(document),
             
@@ -9,11 +8,12 @@
         $navItem = $('.main-nav li'),
         $itemCount = $('.main-nav li').length,
             
-        $modalCurriculum = $('#curriculum'),
+        $modalPdfDocument = $('#pdf-document'),
         $modalContactForm = $('#contact-form'),
         $modalWrapper = $('.modal-wrapper'),
         $modalContent = $("#modal-content"),
         $closeButton = $('.close');
+    
     
     
 //  ON LOAD   
@@ -22,6 +22,8 @@
     
     $nav.css('display', 'none');
     $nav.fadeIn(1500);
+    
+    
     
     
 //  NAVIGATION MENU W/ MEDIA QUERIES
@@ -59,6 +61,7 @@
             $navItem.mouseleave(function() {
                 $('.main-nav a').css({'opacity':'0','transition':'all 400ms ease'});
             })
+            
         } else {
             $navItem.css({'height':'calc(100% / '+$itemCount+')', 'width':'100%'});
         }
@@ -66,36 +69,9 @@
     
     function WidthChangeMobile($mqMobile) {
         if($mqMobile.matches) {
-            $('#curriculum-button').click(function(e){
-                $modalCurriculum.css('display','block');
-
-                e.preventDefault();
-
-                return false; 
-            });
             
-            $('#contact-form-button').click(function(e){
-                $modalContactForm.css('display','block');
-
-                e.preventDefault();
-
-                return false; 
-            });
-
-            $closeButton.click(function() {
-                $modalContactForm.css('display','none');
-            });
-            
-            $window.click(function(e) {
-                $modalCurriculum.css('display','none');
-                $modalContactForm.css('display','none');
-            });
-
-            $('.modal').click(function(e){
-                event.stopPropagation();
-            });
         } else {
-            $('.blog-post-button').click(function(e){
+            $('.blog-post-link').click(function(e){
                 var post_link = $('a', this).attr("href");
 
                 e.preventDefault();
@@ -110,49 +86,56 @@
 
                 return false; 
             });
-    
-            $('#curriculum-button').click(function(e){
-                $modalCurriculum.css('display','block');
-
-                e.preventDefault();
-
-                return false; 
-            });
-
-            $('#contact-form-button').click(function(e){
-                $modalContactForm.css('display','block');
-
-                e.preventDefault();
-
-                return false; 
-            });
 
             $closeButton.click(function() {
                 $modalWrapper.css('display','none');
-                $modalContactForm.css('display','none');
             });
 
             $window.click(function(e) {
                 $modalWrapper.css('display','none');
-                $modalCurriculum.css('display','none');
-                $modalContactForm.css('display','none');
-            });
-
-            $('.modal').click(function(e){
-                event.stopPropagation();
             });
         }
     }
     
+    $('#pdf-document-button').click(function(e){
+        $modalPdfDocument.css('display','block');
 
+        e.preventDefault();
+
+        return false; 
+    });
+            
+    $('#contact-form-button').click(function(e){
+        $modalContactForm.css('display','block');
+        
+        e.preventDefault();
+
+        return false; 
+    });
+
+    $closeButton.click(function() {
+        $modalContactForm.css('display','none');
+    });
+            
+    $window.click(function(e) {
+        $modalPdfDocument.css('display','none');
+        
+        $modalContactForm.css('display','none');
+    });
+
+    $('.modal').click(function(e){
+        event.stopPropagation();
+    });
+    
+
+    
 // TRANSITIONS
-
     $('.main-nav li a').click(function() {
         
         $navItem.css({'opacity':'0','transition':'all 800ms ease'});
         
         setTimeout(function() {
-            $nav.css({'height':'10px','transition':'all 1000ms ease'})
+            $nav.css({'height':'20px','transition':'all 1000ms ease'})
         }, 400);
         
         href = $(this).attr('href');
@@ -164,11 +147,11 @@
         return false;
      });
     
-    $('#goto-main-nav').click(function() {
+    $('#main-nav-link').click(function() {
         $('.page-wrapper').css({'opacity':'0','transition':'all 800ms ease'});
         
         setTimeout(function() {
-            $('#goto-main-nav').css({'height':'100%','transition':'all 1000ms ease'})
+            $('#main-nav-link').css({'height':'100%','transition':'all 1000ms ease'})
         }, 800);
         
         href = $(this).attr('href');
@@ -182,7 +165,6 @@
     
     
            
-    
 // MENU-ITEM BACKGROUND COLOR
     
     $(".main-nav a").wrapInner("<span />");
@@ -190,68 +172,75 @@
     
     
 // CONTACT FORM
-    
     $('.contact-form').on('submit', function(e) {
         e.preventDefault();
         
         $('.has-error').removeClass('has-error');
+        
         $('.js-show-feedback').removeClass('js-show-feedback');
         
-        var form = $(this),
-            name = form.find('#name').val(),
-            email = form.find('#email').val(),
-            message = form.find('#message').val(),
-            ajaxurl = form.data('url');
+        $form = $(this),
+        $name = $form.find('#name').val(),
+        $email = $form.find('#email').val(),
+        $message = $form.find('#message').val(),
+        $ajaxurl = $form.data('url');
         
-        if(name === '') {
+        if($name === '') {
             $('#name').parent('.form-group').addClass('has-error');
             return;
         }
         
-        if(email === '') {
+        if($email === '') {
             $('#email').parent('.form-group').addClass('has-error');
             return;
         }
         
-        if(message === '') {
+        if($message === '') {
             $('#message').parent('.form-group').addClass('has-error');
             return;
         }
         
-        form.find('input, textarea').attr('disabled', 'disabled');
+        $form.find('input, textarea').attr('disabled', 'disabled');
         
-        form.find('#submit').fadeOut(300);
+        $form.find('#submit').fadeOut(300);
         
         $('.js-form-submission').delay(200).fadeIn(500).addClass('js-show-feedback');
         
         $.ajax({
-            url: ajaxurl,
+            url: $ajaxurl,
             type: 'post',
             data: {
-                name: name,
-                email: email,
-                message: message,
+                name: $name,
+                email: $email,
+                message: $message,
                 action: 'kyanne_save_user_contact_form'
                 
             },
+            
             error: function(response) {
                 $('.js-form-submission').removeClass('js-show-feedback');
                 $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
                 form.find('input, textarea').removeAttr('disabled');
             },
+            
             success: function(response) {
                 if(response == 0){
                     setTimeout(function() {
                         $('.js-form-submission').removeClass('js-show-feedback');
+                        
                         $('.js-form-error').delay(200).fadeIn(500).addClass('js-show-feedback');
-                        form.find('input, textarea').removeAttr('disabled');
+                        
+                        $form.find('input, textarea').removeAttr('disabled');
                     }, 1000);
                 } else {
                     setTimeout(function() {
                         $('.text-form-group').css('display', 'none');
+                        
                         $('.js-form-submission').removeClass('js-show-feedback');
+                        
                         $('.js-form-success').delay(200).fadeIn(500).addClass('js-show-feedback');
-                        form.find('input, textarea').removeAttr('disabled').val('');
+                        
+                        $form.find('input, textarea').removeAttr('disabled').val('');
                     }, 1000);
                 }
             },

@@ -1,0 +1,117 @@
+/*  Tablet */
+
+
+
+@media screen and (min-width: 720px) and (max-width:1023px) {
+
+/*----------------------------
+        HOME
+_____________________________*/
+
+
+    .main-nav a, .main-nav span {
+        opacity:1;
+    }
+
+
+
+
+/*----------------------------
+    	ABOUT + BLOG PAGES
+_____________________________*/
+
+
+	.title  {
+        margin: 100px 0 80px;
+        font-size:35pt;
+    }
+
+
+
+/*----------------------------
+        ABOUT
+_____________________________*/
+
+
+    .main-text {
+        width:619px;
+        margin: 40px auto;
+        font-size:10pt;
+    }
+    
+    .buttons {
+        width:146px;
+        margin: 0px auto;
+    }
+    
+    .pdf-document-button, .contact-form-button {
+        height:51px;
+        width:51px;
+    }
+
+    #pdf-document .modal {
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+
+    #pdf-document object {
+        width:690px;
+        margin: 80px auto;
+        position:relative;
+        left:50%;
+        transform:translate(-50%);
+    }
+    
+    #contact-form .modal {
+        height:420px;
+        margin-top:250px;
+    
+    }
+    
+    .text-form-group {
+        width:500px;
+    }
+
+    .text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {
+        width:228px;
+    }
+
+    .form-group textarea {
+        min-height:60px;
+        max-height:180px;
+        width:480px;
+    }
+
+    .submit-button {
+        margin: 40px 0 0 -20px;
+    }
+
+
+
+
+/*----------------------------
+        BLOG PAGES
+_____________________________*/
+
+	#columns {
+        max-width:544px;
+    }
+
+
+
+
+/*----------------------------
+        SINGLE
+_____________________________*/
+
+
+    .modal {
+        width:690px;
+    }
+    
+    .mobile {
+        display:none;
+    }
+}

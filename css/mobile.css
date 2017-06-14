@@ -1,0 +1,176 @@
+/*  Mobile */
+
+
+
+@media screen and (max-width: 719px) {
+
+/*----------------------------
+        HOME
+_____________________________*/
+
+
+    .main-nav li {
+        font-size:15pt;
+    }
+
+
+
+
+/*----------------------------
+    	ABOUT + BLOG PAGES
+_____________________________*/
+
+
+	.title  {
+		margin: 40px 0 45px;
+	    font-size:20pt;
+	}
+
+
+
+
+
+/*----------------------------
+        ABOUT
+_____________________________*/
+
+
+	.main-text {
+        width:264px ;
+        margin: 20px auto;
+        font-size:10pt;  
+    }
+    
+    .buttons {
+        width:146px;
+        margin: 40px auto;
+    }
+    
+    .pdf-document-button, .contact-form-button {
+        height:51px;
+        width:51px;
+    }
+
+    #pdf-document .modal {
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+
+    #pdf-document object {
+    	width:335px ;
+    	margin: 20px 0 0 20px;
+    }
+    
+    #contact-form {
+        padding-top:15%;
+    
+    }
+
+    .text-form-group {
+        width:264px ;
+        position:relative;
+        top:-30px;
+        left:50%;
+        transform:translate(-50%);
+    }
+
+    .text-form-group p {
+        font-size:12pt;
+    }
+
+    .text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {
+        width:244px;
+        display:block;
+    }
+    
+    .text-form-group > .form-group:nth-child(2) {
+        width:244px;
+        margin: 50px 0 30px 10px;
+    }
+    
+    .form-group textarea {
+        min-height:60px;
+        max-height:180px;
+        width:244px;
+    }
+    
+    .text-success {
+        width:270px;
+        top:120px;
+    }
+    
+    .submit-info {
+        height:100%;
+        width:98px;
+        left:45%;
+    }
+    
+    .submit-button {
+        margin:0px;
+    }
+
+
+
+
+/*----------------------------
+        BLOG PAGES
+_____________________________*/
+
+	#columns {
+        max-width:262px;
+    }
+
+
+
+
+/*----------------------------
+        SINGLE
+_____________________________*/
+
+
+    .mobile {
+        display:block;
+    }
+    
+    .modal {
+        height:450px;
+        width:280px;
+    }
+    
+    .admin-edit {
+        margin: 20px 20px;
+        font-size:7pt;
+    }
+    
+    .admin-edit a, .admin-edit span, .admin-edit button {
+        float:left;
+    }
+    
+    .admin-edit span {
+        margin: 0 20px;
+    }
+    
+    .previous-page {
+        border:none;
+        padding:0;
+        font: 300 7pt 'Montserrat', sans-serif;
+        text-align:left;
+        text-transform:uppercase;
+        letter-spacing:1pt;
+        color:#666;
+        background-color:#FFF;
+        cursor:pointer;
+    }
+    
+    .post-title {
+        margin: 70px 0 40px;
+    }
+
+    .post-content p {
+        font-size:14pt;
+        line-height:1.5;
+        letter-spacing:-.5pt;
+    }
+}

@@ -4,6 +4,7 @@
         AJAX FUNCTIONS
 _____________________________*/
 
+
 add_action('wp_ajax_nopriv_kyanne_save_user_contact_form', 'kyanne_save_user_contact_form');
 add_action('wp_ajax_kyanne_save_user_contact_form', 'kyanne_save_user_contact_form');
 

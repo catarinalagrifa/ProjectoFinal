@@ -1,8 +1,9 @@
 <?php
 
 /*----------------------------
-    THEME CUSTOM POST TYPE
+        THEME CUSTOM POST TYPE
 _____________________________*/
+
 
 $contact = get_option('theme_options_activate_contact_form');
 
@@ -18,7 +19,6 @@ if(@$contact == 1){
 
 
 // CONTACT CUSTOM POST TYPE
-
 function kyanne_contact_custom_post_type() {
     $labels = array(
         'name'              => 'Messages',
@@ -64,7 +64,6 @@ function kyanne_contact_custom_column($column, $post_id) {
 
 
 // CONTACT META BOXES
-
 function kyanne_contact_add_meta_box() {
     add_meta_box('contact_email', 'User Email', 'kyanne_contact_email_callback', 'kyanne-contact', 'side', 'high');
 }

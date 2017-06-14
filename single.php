@@ -7,6 +7,7 @@
     
     <?php 
         if(have_posts()): 
+    
         while(have_posts()): the_post(); ?>
             <h2 class="post-title"><?php the_title(); ?></h2>
 
@@ -16,6 +17,7 @@
 
             <p class="tags"><?php the_tags(); ?></p>
         <?php endwhile;
+    
         endif;
     ?> 
 </div>

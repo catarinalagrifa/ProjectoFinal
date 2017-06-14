@@ -2,18 +2,20 @@
 
 set_post_thumbnail_size( 244 );
 
-add_filter('post_thumbnail_html', 'my_post_image_html', 10, 3);
-
-function my_post_image_html($html, $post_id, $post_image_id) {
-    $html = '<a href="'.get_permalink($post_id).'" title="'.esc_attr(get_post_field('post_title', $post_id)).'">'.$html.'</a>';
-    return $html;
+function post_preview_html($preview, $post_id, $post_image_id) {
+    $preview = '<a href="'.get_permalink($post_id).'" title="'.esc_attr(get_post_field('post_title', $post_id)).'">'.$preview.'</a>';
+    return $preview;
 }
 
-add_action('the_content', 'wrap_content');
+add_action('post_thumbnail_html', 'post_preview_html', 10, 3);
+
     
 function wrap_content($content) {
     return '<div id="modal-ready">'.$content.'</div>';
 }
+
+add_action('the_content', 'wrap_content');
+
 
 
 
@@ -44,34 +46,29 @@ add_action('admin_menu', 'kyanne_add_admin_page');
 add_action('admin_init', 'kyanne_custom_settings');
 
 function kyanne_custom_settings() {
-    
-    // ABOUT PAGE OPTIONS
+    //CONTACT FORM
     register_setting('kyanne-theme-group', 'theme_options_activate_contact_form');
-    register_setting('kyanne-theme-group', 'theme_options_activate_button_curriculum');
-    register_setting('kyanne-theme-group', 'theme_options_activate_button_contact_form');
     
     add_settings_section('kyanne-contact-form-options', 'Contact Form', 'kyanne_contact_form_options', 'lagrifa_kyanne');
-    add_settings_section('kyanne-buttons-options', '<br>Buttons', 'kyanne_buttons_options', 'lagrifa_kyanne');
     
     add_settings_field('theme-options-activate-contact-form', 'Activate Contact Form', 'kyanne_theme_options_activate_contact_form', 'lagrifa_kyanne', 'kyanne-contact-form-options');
-    add_settings_field('theme-options-activate-button-curriculum', 'Activate Curriculum Button', 'kyanne_theme_options_activate_button_curriculum', 'lagrifa_kyanne', 'kyanne-buttons-options');
-    add_settings_field('theme-options-activate-button-contact-form', 'Activate Contact Form Button', 'kyanne_theme_options_activate_button_contact_form', 'lagrifa_kyanne', 'kyanne-buttons-options');
+
+    //PDF UPLOADER
+    register_setting('kyanne-theme-group', 'theme_options_upload_pdf');
+    
+    add_settings_section('kyanne-upload-pdf-options', 'PDF', 'kyanne_upload_pdf_options', 'lagrifa_kyanne');
+    
+    add_settings_field('theme-options-upload-pdf', 'Upload Your PDF', 'kyanne_theme_options_upload_pdf', 'lagrifa_kyanne', 'kyanne-upload-pdf-options');
     
 }
 
+// CONTACT FORM
 function kyanne_theme_create_page() {
-    require_once(get_template_directory() . '/inc/templates/kyanne-theme-options.php');
+    require_once(get_template_directory() . '/inc/templates/theme-options.php');
 }
-
-
-// ABOUT PAGE FUNCTIONS
 
 function kyanne_contact_form_options() {
     echo 'Activate or Deactivate the Buil-in Contact Form';
-}
-
-function kyanne_buttons_options() {
-    echo 'Activate or Deactivate the Buil-in Buttons';
 }
 
 function kyanne_theme_options_activate_contact_form() {
@@ -80,18 +77,17 @@ function kyanne_theme_options_activate_contact_form() {
     echo '<input type="checkbox" id="theme_options_activate_contact_form" name="theme_options_activate_contact_form" value="1" '.$contactFormPanelChecked.' />';
 }
 
-function kyanne_theme_options_activate_button_curriculum() {
-    $curriculumCheck = get_option('theme_options_activate_button_curriculum');
-    $curriculumChecked = (@$curriculumCheck == 1 ? 'checked' : '');
-    echo '<input type="checkbox" id="theme_options_activate_button_curriculum" name="theme_options_activate_button_curriculum" value="1" '.$curriculumChecked.' />';
+
+//PDF UPLOADER
+function kyanne_upload_pdf_options() {
+    echo 'Upload your Curriculum or other PDF document';
 }
 
+function kyanne_theme_options_upload_pdf() {
+    $pdfData = esc_attr(get_option('pdf_data'));
 
-
-function kyanne_theme_options_activate_button_contact_form() {
-    $contactFormCheck = get_option('theme_options_activate_button_contact_form');
-    $contactFormChecked = (@$contactFormCheck == 1 ? 'checked' : '');
-    echo '<input type="checkbox" id="theme_options_activate_button_contact_form" name="theme_options_activate_button_contact_form" value="1" '.$contactFormChecked.' />';
+    echo '<input type="button" value="Upload PDF" id="upload-pdf" class="button button-secondary">
+        <p id="pdf_name">Gay</p>';
 }
 
 
@@ -100,6 +96,7 @@ function kyanne_theme_options_activate_button_contact_form() {
 /*----------------------------
         CUSTOMIZER
 _____________________________*/
+
 
 function kyanne_customize_register($wp_customize) {
     //  THEME COLORS
@@ -137,19 +134,20 @@ function kyanne_customize_register($wp_customize) {
         'settings'      =>  'kyanne_header_bar_color',
     )));
     
-    //  BUTTONS
-    $wp_customize->add_setting('kyanne_activate_button_curriculum', array(
+    
+    //  ICONS
+    $wp_customize->add_setting('kyanne_activate_button_pdf_document', array(
         'default'       =>  true,
         'transport'     =>  'postMessage',
     ));
-    $wp_customize->add_setting('kyanne_button_curriculum', array(
+    $wp_customize->add_setting('kyanne_icon_pdf_document', array(
         'default'       =>  get_template_directory_uri() . '/img/default-icon.png',
     ));
     $wp_customize->add_setting('kyanne_activate_button_contact_form', array(
         'default'       =>  true,
         'transport'     =>  'postMessage',
     ));
-    $wp_customize->add_setting('kyanne_button_contact_form', array(
+    $wp_customize->add_setting('kyanne_icon_contact_form', array(
         'default'       =>  get_template_directory_uri() . '/img/default-icon.png',
     ));
     
@@ -158,41 +156,42 @@ function kyanne_customize_register($wp_customize) {
         'priority'      =>  40,
     ));
     
-    $wp_customize->add_control('kyanne_activate_button_curriculum', array(
-        'label'         =>  __('Show Curriculum Button', 'Kyanne'),
+    $wp_customize->add_control('kyanne_activate_button_pdf_document', array(
+        'label'         =>  __('Show PDF Document Button', 'Kyanne'),
         'section'       =>  'kyanne_buttons',
         'type'          =>  'checkbox',
     ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kyanne_button_curriculum_control', array(
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kyanne_icon_pdf_document_control', array(
         'label'         =>  __('Upload an Image', 'Kyanne'),
         'section'       =>  'kyanne_buttons',
-        'settings'      =>  'kyanne_button_curriculum',
+        'settings'      =>  'kyanne_icon_pdf_document',
     )));
     $wp_customize->add_control('kyanne_activate_button_contact_form', array(
         'label'         =>  __('Show Contact Form Button', 'Kyanne'),
         'section'       =>  'kyanne_buttons',
         'type'          =>  'checkbox',
     ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kyanne_button_contact_form_control', array(
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kyanne_icon_contact_form_control', array(
         'label'         =>  __('Upload an Image', 'Kyanne'),
         'section'       =>  'kyanne_buttons',
-        'settings'      =>  'kyanne_button_contact_form',
+        'settings'      =>  'kyanne_icon_contact_form',
     )));
 }
 
 add_action('customize_register', 'kyanne_customize_register');
 
+
 //  OUTPUT
 function kyanne_customize_css() { 
-    if(true === get_theme_mod('kyanne_activate_button_curriculum')){ ?>
+    if(true === get_theme_mod('kyanne_activate_button_pdf_document')){ ?>
         <style type="text/css">
-            .curriculum-button {
+            .pdf-document-button {
                 display:inline-block !important;
             }
         </style>
     <?php } else { ?>
         <style type="text/css">
-            .curriculum-button {
+            .pdf-document-button {
                 display:none;
             }
         </style>
@@ -212,22 +211,22 @@ function kyanne_customize_css() {
         </style>
    <?php } ?>
     
-    <style type="text/css">
+    <style type="text/css">        
         .main-nav span {
             color:<?php echo get_theme_mod('kyanne_menu_item_color'); ?>;
             background-color:<?php echo get_theme_mod('kyanne_menu_item_background_color'); ?>;
         }
         
-        #goto-main-nav {
+        #main-nav-link {
             background-color:<?php echo get_theme_mod('kyanne_header_bar_color'); ?>;
         }
         
-        .curriculum-button {
-            background-image: url('<?php echo get_theme_mod('kyanne_button_curriculum'); ?>');
+        .pdf-document-button {
+            background-image: url('<?php echo get_theme_mod('kyanne_icon_pdf_document'); ?>');
         }
         
         .contact-form-button {
-            background-image: url('<?php echo get_theme_mod('kyanne_button_contact_form'); ?>');
+            background-image: url('<?php echo get_theme_mod('kyanne_icon_contact_form'); ?>');
         }
     </style>
 <?php }

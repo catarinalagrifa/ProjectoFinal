@@ -1,5 +1,3 @@
-<!-- ABOUT -->
-
 <?php 
 
 /*
@@ -7,6 +5,10 @@
 */
 
 get_header(); ?>
+
+<?php
+    $pdfData = esc_attr(get_option('pdf_data'));
+?>
 
 <div class="page-wrapper">
     <?php 
@@ -17,7 +19,7 @@ get_header(); ?>
                 <h3 class="main-text"><?php the_content(); ?></h3>
                 
                 <div class="buttons">
-                    <button type="button" id="curriculum-button" class="curriculum-button"></button>
+                    <button type="button" id="pdf-document-button" class="pdf-document-button"></button>
                 
                     <button type="button" id="contact-form-button" class="contact-form-button"></button>
                 </div>
@@ -25,8 +27,8 @@ get_header(); ?>
         endif;
     ?>
     
-    <div id="curriculum">
-        <object data="insert.pdf#view=Fit" type="application/pdf" width="100%" height="850">
+    <div id="pdf-document">
+        <object id="pdf-data" data="'.$pdfData.'#view=Fit" type="application/pdf" name="pdf_data">
             <div class="modal">
                 <div class="modal-content">
                     <p>It appears your Web browser is not configured to display PDF files. No worries, just <a href="insert.pdf">click here</a> to download the PDF file.</p>
@@ -38,36 +40,42 @@ get_header(); ?>
     <div id="contact-form">
         <div class="modal">         
             <span class="close">&times;</span>         
-                <div class="modal-content">              
-                    <form class="contact-form" data-url="<?php echo admin_url('admin-ajax.php'); ?>">        <div class="text-form-group">
-                            <div class="form-group">
-                                <input id="name" class="input-text" type="text" placeholder="Name"/>
-                                <small class="text-error form-group-message">Your Name is Required</small>
-                            </div>
-
-                            <div class="form-group">
-                                <input id="email" class="input-text" type="email" placeholder="Email"/>
-                                <small class="text-error form-group-message">Your Email is Required</small>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea id="message" class="input-text" tabindex="5" placeholder="Message"></textarea>
-                                <small class="text-error form-group-message">A Message is Required</small>
-                            </div>
+                
+            <div class="modal-content">              
+                <form class="contact-form" data-url="<?php echo admin_url('admin-ajax.php'); ?>">        
+                    <div class="text-form-group">
+                        <div class="form-group">
+                            <input id="name" class="input-text" type="text" placeholder="Name"/>
+                                        
+                            <small class="text-error form-group-message">Your Name is Required</small>
                         </div>
-                            <div class="form-group">
-                                <input id="submit" class="submit-button" type="submit" value="Submit"/>
 
-                                <small class="text-info form-group-message js-form-submission">Your message is being submitted, please wait...</small>
+                        <div class="form-group">
+                            <input id="email" class="input-text" type="email" placeholder="Email"/>
+                                        
+                            <small class="text-error form-group-message">Your Email is Required</small>
+                        </div>
 
-                                <small class="text-success form-group-message js-form-success">Your message was submitted.</small>
+                        <div class="form-group">
+                            <textarea id="message" class="input-text" tabindex="5" placeholder="Message"></textarea>
+                                        
+                            <small class="text-error form-group-message">A Message is Required</small>
+                        </div>
+                    </div>
+                                
+                    <div class="form-group submit-info">
+                        <input id="submit" class="submit-button" type="submit" value="Submit"/>
 
-                                <small class="text-error form-group-message js-form-error">There was a problem submitting your message, please try again.</small>
-                            </div>
-                    </form>
-                </div>  
-            </div>   
-        </div>
+                        <small class="text-info form-group-message js-form-submission">Your message is being submitted, please wait...</small>
+
+                        <small class="text-success form-group-message js-form-success">Your message was submitted.</small>
+
+                        <small class="text-error form-group-message js-form-error">There was a problem submitting your message, please try again.</small>
+                    </div>
+                </form>
+            </div>  
+        </div>   
+    </div>
 </div>
 
 <?php get_footer(); ?>

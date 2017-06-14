@@ -1,40 +1,40 @@
+/*  General    */
+
+
+
 html, body {
     height:100%;
     width:100%;
     margin:0;
     padding:0;
     display:flex;
-    flex-direction: column;
+    flex-direction:column;
     font:sans-serif;
 }
 
 
+
+
 /*----------------------------
-            HEADER
+        HEADER
 _____________________________*/
 
 
-#goto-main-nav {
-    height:10px;
+#main-nav-link {
+    height:20px;
     width:100%;
     background-color:#000;
     cursor:pointer;
 }
 
-.check-size {
-    height:0;
-    width:0;
-    float:left;
-}
 
 
 
 /*----------------------------
-            HOME
+        HOME
 _____________________________*/
 
-
-.home #goto-main-nav {
+.home #main-nav-link {
     display:none;
 }
 
@@ -64,33 +64,26 @@ _____________________________*/
     list-style-type:none;
 }
 
-@media screen and (max-width: 719px) {
-    .main-nav li {
-        font-size:15pt;
-    }
-}
-
 .main-nav li:last-child {
     float:right !important;
 }
 
 .main-nav li:first-child {
     background-color:#FB81B0 !important;
-    background:url('') no-repeat;
+    background: url('') no-repeat;
     background-position:center;
     background-size:cover;
 }
 
 .main-nav li:nth-child(2) {
-    background-color:yellow !important;
-    background:url('') no-repeat;
     background-position:center;
+    background-repeat:no-repeat;
     background-size:cover;
 }
 
 .main-nav li:nth-child(3) {
     background-color:orange !important;
-    background:url('') no-repeat;
+    background: url('') no-repeat;
     background-position:center;
     background-size:cover;
 }
@@ -114,12 +107,6 @@ _____________________________*/
     background-color:#FFF;
 }
 
-@media screen and (max-width: 1023px) {
-    .main-nav a, .main-nav span {
-        opacity:1;
-    }
-}
-
 .home footer {
     display:none;
 }
@@ -128,15 +115,16 @@ _____________________________*/
 
 
 /*----------------------------
-    ABOUT + BLOG PAGES
+        ABOUT + BLOG PAGES
 _____________________________*/
+
 
 .page-wrapper {
     flex: 1 0 auto;
 }
 
 .title {
-    margin:180px 0 140px;
+    margin: 180px 0 140px;
     padding:0;
     font: 600 55pt 'Montserrat', sans-serif;
     text-align:center;
@@ -144,25 +132,11 @@ _____________________________*/
     color:#000;
 }
 
-@media screen and (max-width: 1023px) {
-    .title  {
-        margin:100px 0 80px;
-        font-size:35pt;
-    }
-}
-
-@media screen and (max-width: 719px) {
-    .title  {
-        margin:60px 0 45px;
-        font-size:20pt;
-    }
-}
-
 
 
 
 /*----------------------------
-            ABOUT
+        ABOUT
 _____________________________*/
 
 
@@ -174,112 +148,41 @@ _____________________________*/
     color:#000;
 }
 
-@media screen and (max-width: 719px) {
-    .main-text {
-        width:264px;
-        margin:20px auto;
-        font-size:10pt;  
-    }
-    
-    .buttons {
-        width:146px;
-        margin:40px auto;
-    }
-    
-    .curriculum-button, .contact-form-button {
-        height:51px;
-        width:51px;
-    }
-}
-
-@media screen and (min-width: 720px) {
-    .main-text {
-        width:619px;
-        margin:40px auto;
-        font-size:10pt;
-    }
-    
-    .buttons {
-        width:146px;
-        margin:20px auto;
-    }
-    
-    .curriculum-button, .contact-form-button {
-        height:51px;
-        width:51px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .main-text {
-        width:1030px;
-        margin:80px auto;
-        font-size:12pt;
-    }
-    
-    .buttons {
-        width:186px;
-        margin:80px auto;
-    }
-    
-    .curriculum-button, .contact-form-button {
-        height:70px;
-        width:70px;
-    }
-}
-
-.curriculum-button, .contact-form-button {
+.pdf-document-button, .contact-form-button {
     border:none;
-    margin:0 10px;
+    margin: 0 10px;
     background: url('') no-repeat;
     background-position:center;
     background-size:cover;
     cursor:pointer;
 }
 
-@media screen and (max-width: 719px) {
-    #curriculum object {
-    width:calc(100% - 40px);
-    margin:0 20px;
-}
-
-@media screen and (min-width: 720px) {
-    #curriculum object {
-        width:832px;
-        margin:80px 20px;
-        position:relative;
-        left:50%;
-        transform:translate(-50%);
-    }
-}
-
-#curriculum p {
-    margin:40px 20px 20px;
+#pdf-document p {
+    margin: 40px 20px 20px;
     padding:0;
     font: 300 12pt 'Montserrat', sans-serif;
     text-align:left;
     color:#000;
 }
 
-#curriculum a {
+#pdf-document a {
     font-weight:400;
     text-decoration:none;
     color:#000;
 }
 
 #contact-form .modal {
-    margin:12.5% auto !important;
-    
+    margin: 80px auto;
 }
 
 .contact-form {
-    padding:50px;
-    margin:0 auto;
+    padding:80px;
+    margin: 0 auto;
 }
 
 .text-form-group {
     width:715px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 .form-group {
@@ -287,52 +190,6 @@ _____________________________*/
     margin:20px 10px;
     position:relative;
     display:inline-block;
-}
-    
-@media screen and (max-width: 719px) {
-    .text-form-group {
-        position:relative;
-        left:-22%;
-    }
-    .text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {
-        width:264px;
-        display:block;
-    }
-    
-    .text-form-group > .form-group:nth-child(2) {
-        width:264px;
-        margin:50px 0 30px 10px;
-    }
-    
-    .form-group textarea {
-        min-height:60px;
-        max-height:180px;
-        width:264px;
-    }
-    
-    .submit-button {
-        margin: 20px 0 !important;
-    }
-}
-
-@media screen and (min-width: 720px) {
-    .form-group textarea {
-        min-height:60px;
-        max-height:180px;
-        width:548px;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {
-        width:335px;
-    }
-    
-    .form-group textarea {
-        min-height:60px;
-        max-height:180px;
-        width:690px;
-    }
 }
 
 .contact-form > .form-group {
@@ -344,8 +201,8 @@ _____________________________*/
 .input-text {
     height:36px;
     width:100%;
-    padding:0 0 10px 10px;
-    box-sizing: border-box;
+    padding: 0 0 10px 10px;
+    box-sizing:border-box;
     border:none;
     border-bottom: 2px solid #000;
     display:inline-block;
@@ -378,7 +235,7 @@ _____________________________*/
 }
 
 ::-moz-placeholder {
-   position:absolute;
+    position:absolute;
     left:20px;
     bottom:20px;
     font: 300 10pt 'Montserrat', sans-serif;
@@ -414,9 +271,9 @@ _____________________________*/
 }
 
 .submit-button {
-    margin:40px 0 -10px;
     border:none;
     border-bottom: 2px solid #FFF;
+    margin: 40px 0 -10px;
     font: 500 14pt 'Montserrat', sans-serif;
     text-transform:uppercase;
     text-align:center;
@@ -435,8 +292,8 @@ _____________________________*/
 }
 
 .has-error > .form-group-message {
-        display:block;
-    }
+    display:block;
+}
 
 .text-error {
     position:absolute;
@@ -465,9 +322,8 @@ _____________________________*/
 
 .contact-form > .form-group > .text-error {
     width:530px !important;
-    left:50%;
+    margin: 0 auto;
     text-align:center !important;
-    transform:translate(-50%);
 }
 
 .text-success {
@@ -489,14 +345,13 @@ _____________________________*/
 
 
 
-
 /*----------------------------
         BLOG PAGES
 _____________________________*/
 
 
 .subtitle {
-    margin:10px 5px 0px;
+    margin: 10px 5px 0px;
     padding:0;
     font: 400 5pt 'Montserrat', sans-serif;
     text-align:right;
@@ -509,33 +364,21 @@ _____________________________*/
     column-width:262px;
     column-gap:20px;
     max-width:852px;
-    margin:-10px auto 140px;
-}
-
-@media screen and (max-width: 1023px) {
-    #columns {
-        max-width:544px;
-    }
-}
-
-@media screen and (max-width: 719px) {
-    #columns {
-        max-width:262px;
-    }
+    margin: -10px auto 140px;
 }
 
 
 
 
 /*----------------------------
-            CONTENT
+        CONTENT
 _____________________________*/
 
 
-.blog-post-button {
+.blog-post-link {
+    break-inside:avoid-column;
     border:none;
     margin:0;
-    padding:0 4px 0 0;
     display:block;
     background-color:#FFF;
     cursor:pointer;
@@ -552,35 +395,34 @@ _____________________________*/
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { 
+        transform: rotate(0deg); 
+    }
+
+    100% { 
+        transform: rotate(360deg); 
+    }
 }
 
-.modal-wrapper, #curriculum, #contact-form {
+.modal-wrapper, #pdf-document, #contact-form {
     height:100%;
     width:100%;
-    padding-top:80px;
+    padding:80px 0;
     display:none;
     position:fixed;
     top:0;
     left:0;
     overflow:auto;
-    background-color:rgba(0,0,0,0.4);
+    background-color:rgba(0, 0, 0, 0.4);
     z-index:999;
-}
-
-@media screen and (max-width: 1023px) {
-    .modal-wrapper {
-        padding-top:20px;
-    }
 }
 
 .post {
     height:100%;
     width:244px;
     border: 1px solid #FBFBFB;
-    box-shadow:.5px 2px 4px rgba(34, 25, 25, 0.07);
-    margin:0 0 20px;
+    box-shadow: .5px 2px 4px rgba(34, 25, 25, 0.07);
+    margin: 0 0 20px;
     padding:10px;
     display:inline-block;
     background-color:#FEFEFE;
@@ -590,7 +432,7 @@ _____________________________*/
 
 
 /*----------------------------
-            SINGLE
+        SINGLE
 _____________________________*/
 
 
@@ -609,89 +451,13 @@ _____________________________*/
 }
 
 .single-post {
-    background-color: rgba(34, 25, 25, 0.02);
+    background-color:rgba(34, 25, 25, 0.02);
 }
 
-@media screen and (max-width: 719px) {
-    .mobile {
-        display:block;
-    }
-    
-    .admin-edit {
-        margin:20px 20px !important;
-        font-size:8pt;
-    }
-    
-    .admin-edit a, .admin-edit span, .admin-edit button {
-        float:left;
-    }
-    
-    .admin-edit span {
-        margin:0 20px;
-    }
-    
-    .previous-page {
-        border:none;
-        padding:0;
-        font: 400 5pt 'Montserrat', sans-serif;
-        text-align:left;
-        text-transform:uppercase;
-        letter-spacing:1pt;
-        color:#666;
-        background-color:#FFF;
-        cursor:pointer;
-    }
-    
-    .previous-page:hover {
-        border:none;
-        font: 600 5pt 'Montserrat', sans-serif;
-        text-align:left;
-        text-transform:uppercase;
-        letter-spacing:.9pt;
-        color:#000;
-        background-color:#FFF;
-        cursor:pointer;
-    }
-    
-    .post-title {
-        margin:70px 0 40px;
-    }
-}
-    
-@media screen and (max-width: 719px) {
-    .modal {
-        height:450px;
-        width:calc(100% - 80px);
-    }
-}
-
-
-@media screen and (min-width: 720px) {
-    .modal {
-        width:690px;
-    }
-    
-    .mobile {
-        display:none;
-    }
-}
-
-
-@media screen and (min-width: 1024px) {
-    .modal {
-        width:954px;
-    }
-    
-    #modal-content {
-        width:832px;
-        margin:40px auto;
-    }
-}
-    
 .modal {
-    border:1px solid #FCFCFC;
-    box-shadow:0 1px 2px rgba(34, 25, 25, 0.18);
-    margin:60px auto 180px;
+    border: 1px solid #FCFCFC;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.18);
+    margin: 60px auto 180px;
     padding:10px;
     background-color:#FFF;     
 }
@@ -699,7 +465,7 @@ _____________________________*/
 .admin-edit {
     margin:0;
     padding:0;
-    font: 400 5pt 'Montserrat', sans-serif;
+    font: 300 7pt 'Montserrat', sans-serif;
     text-align:left;
     text-transform:uppercase;
     letter-spacing:1pt;
@@ -725,9 +491,9 @@ _____________________________*/
 }
 
 .post-content p {
-    margin:40px 20px 20px;
+    margin: 40px 20px 20px;
     padding:0;
-    font: 10pt 'Cutive Mono', monospace;
+    font: 12pt 'Cutive Mono', monospace;
     text-align:left;
     color:#000;
 }
@@ -738,7 +504,7 @@ _____________________________*/
 }
 
 .tags {
-    margin:40px 0 10px;
+    margin: 40px 0 10px;
     padding:0;
     font: 400 6pt 'Montserrat', sans-serif;
     text-align:center;
@@ -751,7 +517,7 @@ _____________________________*/
 
 
 /*----------------------------
-            FOOTER
+        FOOTER
 _____________________________*/
 
 
