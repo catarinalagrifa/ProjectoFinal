@@ -165,8 +165,7 @@
     
     
            
-// MENU-ITEM BACKGROUND COLOR
-    
+// MENU-ITEM BACKGROUND COLOR      
     $(".main-nav a").wrapInner("<span />");
     
     

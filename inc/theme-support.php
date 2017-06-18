@@ -12,9 +12,7 @@ add_theme_support('post-formats', array('aside', 'image', 'video'));
 _____________________________*/
 
 
-function kyanne_theme_setup() { 
-    add_theme_support('menus');
-    
+function kyanne_theme_setup() {    
     register_nav_menu('primary', 'Primary Navigation');
 }
 

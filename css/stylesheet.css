@@ -69,21 +69,20 @@ _____________________________*/
 }
 
 .main-nav li:first-child {
-    background-color:#FB81B0 !important;
-    background: url('') no-repeat;
+    background: url('http://eskipaper.com/images/snow-mountain-8.jpg') no-repeat;
     background-position:center;
     background-size:cover;
 }
 
 .main-nav li:nth-child(2) {
+    background: url('https://static.pexels.com/photos/57832/pexels-photo-57832.jpeg') no-repeat;
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
 }
 
 .main-nav li:nth-child(3) {
-    background-color:orange !important;
-    background: url('') no-repeat;
+    background: url('https://static.pexels.com/photos/33147/desert-africa-bedouin-footprints.jpg') no-repeat;
     background-position:center;
     background-size:cover;
 }
@@ -148,27 +147,12 @@ _____________________________*/
     color:#000;
 }
 
-.pdf-document-button, .contact-form-button {
+.contact-form-button {
     border:none;
-    margin: 0 10px;
     background: url('') no-repeat;
     background-position:center;
     background-size:cover;
     cursor:pointer;
-}
-
-#pdf-document p {
-    margin: 40px 20px 20px;
-    padding:0;
-    font: 300 12pt 'Montserrat', sans-serif;
-    text-align:left;
-    color:#000;
-}
-
-#pdf-document a {
-    font-weight:400;
-    text-decoration:none;
-    color:#000;
 }
 
 #contact-form .modal {
@@ -404,7 +388,7 @@ _____________________________*/
     }
 }
 
-.modal-wrapper, #pdf-document, #contact-form {
+.modal-wrapper, #contact-form {
     height:100%;
     width:100%;
     padding:80px 0;

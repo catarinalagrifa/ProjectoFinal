@@ -6,10 +6,6 @@
 
 get_header(); ?>
 
-<?php
-    $pdfData = esc_attr(get_option('pdf_data'));
-?>
-
 <div class="page-wrapper">
     <?php 
         if( have_posts() ):
@@ -18,24 +14,12 @@ get_header(); ?>
 
                 <h3 class="main-text"><?php the_content(); ?></h3>
                 
-                <div class="buttons">
-                    <button type="button" id="pdf-document-button" class="pdf-document-button"></button>
-                
+                <div class="button">
                     <button type="button" id="contact-form-button" class="contact-form-button"></button>
                 </div>
             <?php endwhile;
         endif;
     ?>
-    
-    <div id="pdf-document">
-        <object id="pdf-data" data="'.$pdfData.'#view=Fit" type="application/pdf" name="pdf_data">
-            <div class="modal">
-                <div class="modal-content">
-                    <p>It appears your Web browser is not configured to display PDF files. No worries, just <a href="insert.pdf">click here</a> to download the PDF file.</p>
-                </div>
-            </div>
-        </object>
-    </div>
    
     <div id="contact-form">
         <div class="modal">         

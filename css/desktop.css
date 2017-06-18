@@ -15,29 +15,14 @@ _____________________________*/
         font-size:12pt;
     }
     
-    .buttons {
-        width:186px;
+    .button {
+        width:51px;
         margin: 80px auto;
     }
     
     .pdf-document-button, .contact-form-button {
         height:70px;
         width:70px;
-    }
-
-    #pdf-document .modal {
-        margin-top: 380px;
-        position:absolute;
-        left:50%;
-        transform:translate(-50%);
-    }
-
-	#pdf-document object {
-        width:832px;
-        margin: 80px 20px;
-        position:relative;
-        left:50%;
-        transform:translate(-50%);
     }
 
     .text-form-group > .form-group:first-child, .text-form-group > .form-group:nth-child(2) {

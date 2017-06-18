@@ -39,29 +39,14 @@ _____________________________*/
         font-size:10pt;
     }
     
-    .buttons {
-        width:146px;
+    .button {
+        width:51px;
         margin: 0px auto;
     }
     
-    .pdf-document-button, .contact-form-button {
+    .contact-form-button {
         height:51px;
         width:51px;
-    }
-
-    #pdf-document .modal {
-        position:fixed;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-    }
-
-    #pdf-document object {
-        width:690px;
-        margin: 80px auto;
-        position:relative;
-        left:50%;
-        transform:translate(-50%);
     }
     
     #contact-form .modal {

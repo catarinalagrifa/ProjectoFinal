@@ -14,9 +14,9 @@ get_header(); ?>
             //PRINT ONLY CAT=2 POSTS
             $lastBlog = new WP_Query('type=post&posts_per_page=-1&cat=2');
 
-            if( $lastBlog->have_posts() ):
+            if($lastBlog->have_posts() ):
         
-            while( $lastBlog->have_posts() ): $lastBlog->the_post(); ?>
+            while($lastBlog->have_posts() ): $lastBlog->the_post(); ?>
                 <button class="blog-post-link">
                     <?php get_template_part('content', get_post_format()); ?>
                 </button>
